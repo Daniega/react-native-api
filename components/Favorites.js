@@ -4,6 +4,10 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 const Favorites = ({ route }) => {
    const { favoritesList } = route.params.favorites;
 
+   useEffect(() => {
+      console.log(favoritesList);
+   }, []);
+
    return (
       <View style={styles.container}>
          <FlatList

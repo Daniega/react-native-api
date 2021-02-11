@@ -2,23 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { GoogleSocialButton } from 'react-native-social-buttons';
-
 //fontAwesome
 import { FontAwesome } from '@expo/vector-icons';
-
 //Google Authentication
 import * as Google from 'expo-google-app-auth';
+//constants
+import { ANDROID_ID, IOS_ID } from '../constants/constants';
 
+//Screen for showing Welcome screen with user data, and login Button to get user data
 const Login = ({ navigation }) => {
    const [ user, setUser ] = useState({ signedIn: false, userName: '', photoUrl: '' });
-
    //Sign In with google function to get user data
    const signInWithGoogleAsync = async () => {
       try {
          //WARNING - Environment variables! used here just for simplicity, but these variables should be hidden.
          const result = await Google.logInAsync({
-            androidClientId : '1015181446053-3o3dega2vc8nera1okit5snk9u735cmd.apps.googleusercontent.com',
-            iosClientId     : '1015181446053-0rcbscuhcl8636didtd1m8melhe2semc.apps.googleusercontent.com',
+            androidClientId : ANDROID_ID,
+            iosClientId     : IOS_ID,
             scopes          : [ 'profile', 'email' ]
          });
          //If Login successfull - save user data in user State

@@ -4,12 +4,15 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 //constants
 import { tmdbPath, LARGE_FONT_SIZE, SMALL_FONT_SIZE } from '../constants/constants';
 
+//Screen for showing Movie Details, and few action Buttons
 const Movie = ({ route }) => {
+   //destructuring movieDetails params
    const { title, poster_path, overview, vote_average, id } = route.params.movieDetails;
-   //handlePress invokes addFavoriteMovie() in MovieList
+   //addToFavorites invokes addFavoriteMovie() in MovieList
    const addToFavorites = () => {
       route.params.addToFavorites(route.params.movieDetails);
    };
+   //removeFromFavorites invokes removeFromFavorites() in MovieList
    const removeFromFavorites = () => {
       route.params.removeFromFavorites(route.params.movieDetails);
    };

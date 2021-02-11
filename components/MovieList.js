@@ -4,6 +4,7 @@ import { StyleSheet, View, Button, FlatList, TouchableOpacity, Text } from 'reac
 //constants
 import { tmdbPathKey, MEDIUM_FONT_SIZE } from '../constants/constants';
 
+//Screen to show list of most popular movies, that we get from themoviedb.org API, we can press each movie to get specific details
 const MovieList = ({ navigation, route }) => {
    const [ movies, setMovies ] = useState([]);
    const [ favorites, setFavorites ] = useState([]);
