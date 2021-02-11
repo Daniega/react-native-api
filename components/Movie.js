@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 //constants
 import { tmdbPath, LARGE_FONT_SIZE, SMALL_FONT_SIZE, MEDIUM_FONT_SIZE } from '../constants/constants';
@@ -20,23 +21,27 @@ const Movie = ({ route, navigation }) => {
    };
 
    return (
-      <View style={styles.container}>
-         <TouchableOpacity
-            style={styles.cart}
-            onPress={() => {
-               navigation.navigate('Favorites', { favorites });
-            }}
-         >
-            <Text style={styles.favoritesText}>Favorites [{favorites.length}]</Text>
-         </TouchableOpacity>
-         <Text style={styles.name}>{title}</Text>
-         <Image style={styles.image} source={{ uri: `${tmdbPath}${poster_path}` }} />
-         <Text style={styles.overview}>{overview}</Text>
-         <Text style={styles.ratingText}>Rating:</Text>
-         <Text style={styles.rating}>{vote_average}</Text>
-         <Button title='Add to favorites' onPress={addToFavorites} />
-         <Button title='Remove from favorites' onPress={removeFromFavorites} />
-      </View>
+      <ScrollView>
+         <View style={styles.container}>
+            <TouchableOpacity
+               style={styles.cart}
+               onPress={() => {
+                  navigation.navigate('Favorites', { favorites });
+               }}
+            >
+               <Text style={styles.favoritesText}>Favorites [{favorites.length}]</Text>
+            </TouchableOpacity>
+            <Text style={styles.name}>{title}</Text>
+            <Image style={styles.image} source={{ uri: `${tmdbPath}${poster_path}` }} />
+            <Text style={styles.overview}>{overview}</Text>
+            <Text style={styles.ratingText}>Rating:</Text>
+            <Text style={styles.rating}>{vote_average}</Text>
+            <View style={styles.buttons}>
+               <Button title='Add to favorites' onPress={addToFavorites} />
+               <Button title='Remove from favorites' onPress={removeFromFavorites} />
+            </View>
+         </View>
+      </ScrollView>
    );
 };
 
@@ -67,8 +72,9 @@ const styles = StyleSheet.create({
       color        : 'white'
    },
    name          : {
-      marginTop : '5%',
-      fontSize  : LARGE_FONT_SIZE
+      marginTop  : '5%',
+      fontSize   : MEDIUM_FONT_SIZE,
+      fontWeight : 'bold'
    },
    image         : {
       marginTop    : 20,
@@ -90,5 +96,8 @@ const styles = StyleSheet.create({
       color        : '#FE5E41',
       fontSize     : LARGE_FONT_SIZE,
       marginBottom : 10
+   },
+   buttons       : {
+      marginBottom : 20
    }
 });

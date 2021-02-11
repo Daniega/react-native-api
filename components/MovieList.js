@@ -104,8 +104,9 @@ const styles = StyleSheet.create({
       justifyContent  : 'center'
    },
    list          : {
-      marginTop : '10%',
-      width     : '80%'
+      marginTop    : '10%',
+      width        : '80%',
+      marginBottom : 20
    },
 
    item          : {

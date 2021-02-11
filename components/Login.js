@@ -7,7 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 //Google Authentication
 import * as Google from 'expo-google-app-auth';
 //constants
-import { ANDROID_ID, IOS_ID } from '../constants/constants';
+import { ANDROID_ID, IOS_ID, MEDIUM_FONT_SIZE } from '../constants/constants';
 
 //Screen for showing Welcome screen with user data, and login Button to get user data
 const Login = ({ navigation }) => {
@@ -70,21 +70,27 @@ const styles = StyleSheet.create({
       flex            : 1,
       backgroundColor : '#fff',
       alignItems      : 'center',
-      justifyContent  : 'space-between'
+      justifyContent  : 'space-between',
+      textAlign       : 'center'
    },
 
    header       : {
       alignItems : 'center',
+      textAlign  : 'center',
+
       marginTop  : '40%'
    },
 
    headerText   : {
       marginBottom : 20,
-      fontSize     : 30
+      fontSize     : MEDIUM_FONT_SIZE,
+      width        : '80%',
+      fontWeight   : 'bold'
    },
 
    bottomText   : {
-      marginTop : 20
+      marginTop : 20,
+      width     : '80%'
    },
 
    buttons      : {
