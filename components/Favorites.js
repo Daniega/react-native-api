@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 //constants
 import { MEDIUM_FONT_SIZE, LARGE_FONT_SIZE } from '../constants/constants';
 
+//Screen to show Favorite movies
 const Favorites = ({ route }) => {
    const favoritesList = route.params.favorites;
 
