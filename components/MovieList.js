@@ -8,15 +8,16 @@ import { tmdbPathKey, MEDIUM_FONT_SIZE } from '../constants/constants';
 const MovieList = ({ navigation, route }) => {
    const [ movies, setMovies ] = useState([]);
    const [ favorites, setFavorites ] = useState([]);
-
+   //check if a movie is existing in the favorits array
    const isExisting = (movie, list) => {
       return list.some((elem) => elem.id === movie.id);
    };
-
+   //add movie to favorites function
    const addToFavorites = (movie) => {
       try {
          if (!isExisting(movie, favorites)) {
-            setFavorites((oldFavorites) => [ ...oldFavorites, movie ]);
+            //if movie is not existing in the favorits array
+            setFavorites((oldFavorites) => [ ...oldFavorites, movie ]); //add movie to favorites array
             alert('Added to favorites');
             navigation.goBack();
          } else {
@@ -26,11 +27,13 @@ const MovieList = ({ navigation, route }) => {
          console.log('error', error);
       }
    };
-
+   //remove movie from favorites function
    const removeFromFavorites = (movie) => {
       try {
          if (isExisting(movie, favorites)) {
+            //if movie is existing in the favorites array
             var filtered = favorites.filter((favorite) => {
+               //get new array without the movie
                return favorite.id !== movie.id;
             });
             setFavorites(filtered);
@@ -43,7 +46,7 @@ const MovieList = ({ navigation, route }) => {
          console.log('error', error);
       }
    };
-
+   //async Call to API to get movies data from themoviesdb.com
    const getMovies = async () => {
       try {
          const response = await fetch(tmdbPathKey);
@@ -53,7 +56,7 @@ const MovieList = ({ navigation, route }) => {
          console.log(error);
       }
    };
-
+   //initialize movies state
    useEffect(() => {
       getMovies().then((data) => setMovies(data));
    }, []);
@@ -66,7 +69,7 @@ const MovieList = ({ navigation, route }) => {
                navigation.navigate('Favorites', { favorites });
             }}
          >
-            <Text style={styles.favoritesText}>Favorites</Text>
+            <Text style={styles.favoritesText}>Favorites [{favorites.length}]</Text>
          </TouchableOpacity>
          <FlatList
             style={styles.list}
@@ -80,7 +83,8 @@ const MovieList = ({ navigation, route }) => {
                      navigation.navigate('Movie', {
                         movieDetails        : item,
                         addToFavorites,
-                        removeFromFavorites
+                        removeFromFavorites,
+                        favorites
                      });
                   }}
                />
@@ -121,6 +125,7 @@ const styles = StyleSheet.create({
       fontSize     : MEDIUM_FONT_SIZE,
       marginTop    : 'auto',
       marginBottom : 'auto',
-      fontWeight   : 'bold'
+      fontWeight   : 'bold',
+      color        : 'white'
    }
 });

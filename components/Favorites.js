@@ -1,20 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 
-const Favorites = ({ route }) => {
-   const { favoritesList } = route.params.favorites;
+//constants
+import { MEDIUM_FONT_SIZE, LARGE_FONT_SIZE } from '../constants/constants';
 
-   useEffect(() => {
-      console.log(favoritesList);
-   }, []);
+const Favorites = ({ route }) => {
+   const favoritesList = route.params.favorites;
+
+   //FavoriteItem component
+   const FavoriteItem = ({ item }) => {
+      return <Text style={styles.item}>{item.title}</Text>;
+   };
 
    return (
       <View style={styles.container}>
+         <Text style={styles.header}>My Favorites:</Text>
          <FlatList
             style={styles.list}
             data={favoritesList}
             keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => <Text style={styles.item}>{item.title}</Text>}
+            renderItem={({ item }) => <FavoriteItem item={item} />}
          />
       </View>
    );
@@ -29,7 +34,20 @@ const styles = StyleSheet.create({
       alignItems      : 'center',
       justifyContent  : 'center'
    },
+
+   list      : {
+      width : '90%'
+   },
+
+   header    : {
+      marginTop    : 20,
+      marginBottom : 20,
+      fontSize     : LARGE_FONT_SIZE
+   },
    item      : {
-      color : 'black'
+      fontSize     : MEDIUM_FONT_SIZE,
+      marginTop    : 5,
+      marginBottom : 5,
+      alignItems   : 'center'
    }
 });
