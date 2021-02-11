@@ -1,16 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 
-const Favorites = ({ navigation }) => {
-   const { favoritesList } = route.params;
-
-   useEffect(() => {
-      console.log(favoritesList);
-   }, []);
+const Favorites = ({ route }) => {
+   const { favoritesList } = route.params.favorites;
 
    return (
       <View style={styles.container}>
-         <Text />
+         <FlatList
+            style={styles.list}
+            data={favoritesList}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => <Text style={styles.item}>{item.title}</Text>}
+         />
       </View>
    );
 };
@@ -23,5 +24,8 @@ const styles = StyleSheet.create({
       backgroundColor : '#fff',
       alignItems      : 'center',
       justifyContent  : 'center'
+   },
+   item      : {
+      color : 'black'
    }
 });

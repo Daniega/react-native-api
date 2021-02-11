@@ -4,17 +4,14 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 //constants
 import { tmdbPath, LARGE_FONT_SIZE, SMALL_FONT_SIZE } from '../constants/constants';
 
-const Movie = ({ route, navigation }) => {
-   //    const movie = route.params.movieDetails;
-   const { title, poster_path, overview, vote_average } = route.params.movieDetails;
-
-   const [ favorites, setFavorites ] = useState([]);
-
-   const addToFavorites = async () => {
-      console.log('im inside');
-      const newFavorite = route.params.movieDetails;
-      setFavorites((favorites) => [ ...favorites, newFavorite ]);
-      console.log(favorites);
+const Movie = ({ route }) => {
+   const { title, poster_path, overview, vote_average, id } = route.params.movieDetails;
+   //handlePress invokes addFavoriteMovie() in MovieList
+   const addToFavorites = () => {
+      route.params.addToFavorites(route.params.movieDetails);
+   };
+   const removeFromFavorites = () => {
+      route.params.removeFromFavorites(route.params.movieDetails);
    };
 
    return (
@@ -25,6 +22,7 @@ const Movie = ({ route, navigation }) => {
          <Text style={styles.ratingText}>Rating:</Text>
          <Text style={styles.rating}>{vote_average}</Text>
          <Button title='Add to favorites' onPress={addToFavorites} />
+         <Button title='Remove from favorites' onPress={removeFromFavorites} />
       </View>
    );
 };
@@ -43,16 +41,16 @@ const styles = StyleSheet.create({
       fontSize  : LARGE_FONT_SIZE
    },
    image      : {
-      marginTop    : 30,
-      marginBottom : 30,
+      marginTop    : 20,
+      marginBottom : 20,
       width        : 200,
       height       : 300
    },
    overview   : {
       width        : '80%',
       fontSize     : SMALL_FONT_SIZE,
-      marginTop    : 30,
-      marginBottom : 30
+      marginTop    : 20,
+      marginBottom : 20
    },
 
    ratingText : {

@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { GoogleSocialButton } from 'react-native-social-buttons';
 
 //fontAwesome
 import { FontAwesome } from '@expo/vector-icons';
 
-//firebase
+//Google Authentication
 import * as Google from 'expo-google-app-auth';
 
 const Login = ({ navigation }) => {
@@ -14,12 +15,13 @@ const Login = ({ navigation }) => {
    //Sign In with google function to get user data
    const signInWithGoogleAsync = async () => {
       try {
+         //WARNING - Environment variables! used here just for simplicity, but these variables should be hidden.
          const result = await Google.logInAsync({
             androidClientId : '1015181446053-3o3dega2vc8nera1okit5snk9u735cmd.apps.googleusercontent.com',
             iosClientId     : '1015181446053-0rcbscuhcl8636didtd1m8melhe2semc.apps.googleusercontent.com',
             scopes          : [ 'profile', 'email' ]
          });
-
+         //If Login successfull - save user data in user State
          if (result.type === 'success') {
             setUser({
                signedIn : true,
@@ -49,7 +51,11 @@ const Login = ({ navigation }) => {
             {user.signedIn ? (
                <Button title='Movie List' onPress={() => navigation.navigate('MovieList')} />
             ) : (
-               <Button title='Sign In With Google' onPress={signInWithGoogleAsync} />
+               <GoogleSocialButton
+                  title='Sign In With Google'
+                  onPress={signInWithGoogleAsync}
+                  buttonViewStyle={styles.googleButton}
+               />
             )}
          </View>
          <StatusBar style='auto' />
@@ -83,6 +89,10 @@ const styles = StyleSheet.create({
 
    buttons      : {
       marginBottom : '20%'
+   },
+
+   googleButton : {
+      backgroundColor : '#DE5246'
    },
 
    profilePhoto : {
