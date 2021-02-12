@@ -10,24 +10,35 @@
          "resizeMode": "contain",
          "backgroundColor": "#ffffff"
       },
-
-      "ios": {
-         "bundleIdentifier": "com.daniega.react-native-api",
-         "buildNumber": "1.0.0"
-      },
-      "android": {
-         "package": "com.daniega.react-native-api",
-         "versionCode": 1,
-         "adaptiveIcon": {
-            "foregroundImage": "./assets/adaptive-icon.png",
-            "backgroundColor": "#FFFFFF"
-         }
-      },
       "updates": {
          "fallbackToCacheTimeout": 0
       },
       "assetBundlePatterns": [ "**/*" ],
-
+      "ios": {
+         "bundleIdentifier": "com.daniega.reactnativecli",
+         "buildNumber": "1.0.1",
+         "config": {
+            "googleSignIn": {
+               "reservedClientId": "com.googleusercontent.apps.1015181446053-927euvrin3ju9m9ql9muda75jv1j9qql"
+            }
+         },
+         "googleServicesFile": "./GoogleService-Info.plist"
+      },
+      "android": {
+         "adaptiveIcon": {
+            "foregroundImage": "./assets/adaptive-icon.png",
+            "backgroundColor": "#FFFFFF"
+         },
+         "config": {
+            "googleSignIn": {
+               "apiKey": "AIzaSyCkGxGor1ti1GLcfglvYGHbWAHQAct_WRA",
+               "certificateHash": "9848D85EED3B85DEDFA9FFDFC4F9DE988091E9D7"
+            }
+         },
+         "package": "com.daniega.reactnativecli",
+         "versionCode": 2,
+         "googleServicesFile": "./google-services.json"
+      },
       "web": {
          "favicon": "./assets/favicon.png"
       }

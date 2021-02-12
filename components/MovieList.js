@@ -8,18 +8,17 @@ import { tmdbPathKey, MEDIUM_FONT_SIZE } from '../constants/constants';
 const MovieList = ({ navigation, route }) => {
    const [ movies, setMovies ] = useState([]);
    const [ favorites, setFavorites ] = useState([]);
-   //check if a movie is existing in the favorits array
+   //check if a movie exists in favorits array
    const isExisting = (movie, list) => {
       return list.some((elem) => elem.id === movie.id);
    };
    //add movie to favorites function
    const addToFavorites = (movie) => {
       try {
+         //if movie is not existing in the favorits array
          if (!isExisting(movie, favorites)) {
-            //if movie is not existing in the favorits array
             setFavorites((oldFavorites) => [ ...oldFavorites, movie ]); //add movie to favorites array
             alert('Added to favorites');
-            navigation.goBack();
          } else {
             alert('Already in favorites!');
          }
@@ -38,7 +37,6 @@ const MovieList = ({ navigation, route }) => {
             });
             setFavorites(filtered);
             alert('Removed from favorites!');
-            navigation.goBack();
          } else {
             alert('Not in favorites');
          }

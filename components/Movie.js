@@ -9,15 +9,26 @@ import { tmdbPath, LARGE_FONT_SIZE, SMALL_FONT_SIZE, MEDIUM_FONT_SIZE } from '..
 const Movie = ({ route, navigation }) => {
    //destructuring movieDetails params
    const { title, poster_path, overview, vote_average, id } = route.params.movieDetails;
+   const [ buttonDisabeled, setButtonDisabeled ] = useState(false); // preventing double press on button
 
    const favorites = route.params.favorites;
    //addToFavorites invokes addFavoriteMovie() in MovieList
    const addToFavorites = () => {
+      setButtonDisabeled(true);
+      setTimeout(() => {
+         setButtonDisabeled(false);
+      }, 200);
       route.params.addToFavorites(route.params.movieDetails);
+      navigation.goBack();
    };
    //removeFromFavorites invokes removeFromFavorites() in MovieList
    const removeFromFavorites = () => {
+      setButtonDisabeled(true);
+      setTimeout(() => {
+         setButtonDisabeled(false);
+      }, 200);
       route.params.removeFromFavorites(route.params.movieDetails);
+      navigation.goBack();
    };
 
    return (
@@ -37,8 +48,8 @@ const Movie = ({ route, navigation }) => {
             <Text style={styles.ratingText}>Rating:</Text>
             <Text style={styles.rating}>{vote_average}</Text>
             <View style={styles.buttons}>
-               <Button title='Add to favorites' onPress={addToFavorites} />
-               <Button title='Remove from favorites' onPress={removeFromFavorites} />
+               <Button title='Add to favorites' onPress={addToFavorites} disabled={buttonDisabeled} />
+               <Button title='Remove from favorites' onPress={removeFromFavorites} disabled={buttonDisabeled} />
             </View>
          </View>
       </ScrollView>
