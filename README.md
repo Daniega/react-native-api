@@ -1,6 +1,6 @@
 # react-native-api
 
-The app was created using Expo Cli. By Daniel Gaishuber
+The app was created using Expo
 
 # How to run
 If you are running from .apk file, simply install the file on your Android phone.
