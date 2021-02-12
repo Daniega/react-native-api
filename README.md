@@ -2,7 +2,7 @@
 
 The app was created using Expo Cli. By Daniel Gaishuber
 # How to run
-To run the app, you can download the code to your computer, "npm install" and then "npm run".
+To run the app, you can download the code to your computer, "npm install" and then "npm start".
 A Web window will open with a QR code.
 
 1.Install "Expo Go" app on your Android or IOS device and scan the QR code.
